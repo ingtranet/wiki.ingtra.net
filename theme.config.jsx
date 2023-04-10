@@ -6,5 +6,8 @@ export default {
     },
     nextThemes: {
         defaultTheme: 'light'
+    },
+    footer: {
+      text: <span>{new Date().getFullYear()} © <a href="https://github.com/ingtranet" target="_blank">IngtraNet</a>.</span>
     }
 }
