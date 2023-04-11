@@ -1,19 +1,5 @@
-import { useRef, useEffect } from "react"
-
-{/* https://github.com/chimin/blog/blob/41facac06362f1e35805703bb955279173276771/src/app/comps/EmbedGithub.tsx */}
-export const EmbedGithub = () => {
-    const divRef = useRef();
-
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = "https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2Fingtranet%2Fansible-playbooks%2Fblob%2Fmain%2Froles%2Funbound%2Ffiles%2Fingtra-net-main%2Flocal.d%2Fingtra.net.conf&style=tokyo-night-dark&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"
-        divRef.current.appendChild(script);
-        return () => script.remove();
-    }, []);
-
-    return <div className="emgithub-container" ref={divRef} style={{backgroundColor: 'rgb(26, 27, 38)', borderRadius: '6px'}} />;
-}
+import Emgithub from '/components/emgithub'
 
 # DNS
 
-<EmbedGithub/>
+<Emgithub target="https://github.com/ingtranet/ansible-playbooks/blob/main/roles/unbound/files/ingtra-net-main/local.d/ingtra.net.conf" />

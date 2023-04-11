@@ -1,0 +1,77 @@
+export function EasyTable({ text }) {
+  const rows = text.split('\n').filter(s => s.trim())
+  return (
+    <table>
+      <tbody>
+        {
+          rows.map(
+            row => (
+              <tr>
+                {row.split('    ').map(el => (<td>{el}</td>))}
+              </tr>
+            )
+          )
+        }
+      </tbody>
+    </table>
+  )
+}
+
+
+## Intel Mini Servers
+
+### Mini Server 1
+
+![dell-optiplex-3060-micro](https://static.ingtra.net/wiki/servers/dell-optiplex-3060-micro.jpg)
+
+<EasyTable text={`
+Since    Early 2019
+Model    Dell Optiplex 3060 Micro
+CPU    i5-8500T
+RAM    DDR4L 32GB (16+16)
+GPU    UHD Graphics 630
+Disk1    Western Digital WD BLUE SN550 M.2 NVMe 256GB
+Disk2    Crucial MX500 500GB 3D NAND 500GB
+`}/>
+
+### Mini Server 2
+
+![lenovo-m720q](https://static.ingtra.net/wiki/servers/lenovo-m720q.jpg)
+
+<EasyTable text={`
+Since    Late 2019
+Model    Lenovo ThinkCentre M720q
+CPU    i5-8500T
+RAM    DDR4L 32GB (16+16)
+GPU    UHD Graphics 630
+Disk1    Western Digital WD BLUE SN550 M.2 NVMe 256GB
+Disk2    Crucial MX500 500GB 3D NAND 500GB
+`}/>
+
+### Mini Server 3
+
+![hp-elitedesk-800-g8](https://static.ingtra.net/wiki/servers/hp-elitedesk-800-g8.jpg)
+
+<EasyTable text={`
+Since    2022.01
+Model    HP EliteDesk 800 G8
+CPU    i7-11700T
+RAM    DDR4L 32GB (16+16)
+GPU    GTX 1660Ti
+Disk1    Samsung PM991a M.2 512 GB
+`}/>
+
+### Mini Server 4
+
+![lian-li-a4-h2o](https://static.ingtra.net/wiki/servers/lian-li-a4-h2o.jpg)
+
+<EasyTable text={`
+Since    2023.02
+Case    Lian Li A4-H2O
+Board    H610M-ITX/ac
+Power    CoolerMaster V SFX GOLD V2 750W ATX
+CPU    i5-12500
+RAM    DDR4 48GB (32+16)
+GPU    RTX 3090
+Disk1    Intel SSD 670p Series 512GB
+`}/>
