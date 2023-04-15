@@ -47,7 +47,8 @@ export function CidrTable({ cidrs }) {
 
 export const network = [
   {cidr: '10.0.0.0/24',     vlan: '',      description: 'Gateway & Temporary zone for newly added clients'},
-  {cidr: '10.0.1.0/24',     vlan: '1',     description: 'Ubiquiti Network Devices'},
+  {cidr: '10.0.1.0/24',     vlan: '1',     description: 'Ubiquiti Routers'},
+  {cidr: '10.0.2.0/24',     vlan: '2',     description: 'Ubiquiti Network Devices'},
   {cidr: '10.0.32.0/24',    vlan: '32',    description: 'Network Components (ex. DNS)'}
 ]
 
@@ -63,7 +64,7 @@ export const mdc = [
   {cidr: '10.2.0.0/24',     vlan: '200',   description: 'MDC Network Devices'},
   {cidr: '10.2.1.0/24',     vlan: '201',   description: 'Proxmox Hosts'},
   {cidr: '10.2.8.0/24',     vlan: '202',   description: 'Network Attached Storages'},
-  {cidr: '10.2.64.0/24',    vlan: '264',   description: 'Proxmox Virtual Machines'}
+  {cidr: '10.2.32.0/24',    vlan: '232',   description: 'Proxmox Virtual Machines'}
 ]
 
 # IP Allocation
