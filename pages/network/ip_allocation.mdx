@@ -12,6 +12,7 @@ export function CidrTable({ cidrs }) {
       end: calc.ipHighStr,
       mask: calc.prefixMaskStr,
       vlan: item.vlan,
+      gateway: item.gateway,
       description: item.description
     }
   })
@@ -24,6 +25,7 @@ export function CidrTable({ cidrs }) {
           <th>IP End</th>
           <th>Subnet Mask</th>
           <th>VLAN</th>
+          <th>Gateway</th>
           <th>Description</th>
         </tr>
       </thead>
@@ -36,6 +38,7 @@ export function CidrTable({ cidrs }) {
               <td>{item.end}</td>
               <td>{item.mask}</td>
               <td>{item.vlan}</td>
+              <td>{item.gateway}</td>
               <td>{item.description}</td>
             </tr>
           ))
@@ -45,31 +48,16 @@ export function CidrTable({ cidrs }) {
   )
 }
 
-export const network = [
-  {cidr: '10.0.0.0/24',     vlan: '',      description: 'Gateway & Temporary zone for newly added clients'},
-  {cidr: '10.0.1.0/24',     vlan: '1',     description: 'Ubiquiti Routers'},
-  {cidr: '10.0.2.0/24',     vlan: '2',     description: 'Ubiquiti Network Devices'},
-  {cidr: '10.0.32.0/24',    vlan: '32',    description: 'Network Components (ex. DNS)'}
-]
-
-export const users = [
-  {cidr: '10.1.0.0/24',     vlan: '100',   description: 'In-Home Users'},
-  {cidr: '10.1.1.0/24',     vlan: '101',   description: 'Nya Project Users'},
-  {cidr: '10.1.2.0/24',     vlan: '103',   description: 'Guest Users'},
-  {cidr: '10.1.16.0/24',    vlan: '116',   description: 'Multimedia Devices'},
-  {cidr: '10.1.17.0/24',    vlan: '117',   description: 'IoT Devices'}
-]
-
-export const mdc = [
-  {cidr: '10.2.0.0/24',     vlan: '200',   description: 'MDC Network Devices'},
-  {cidr: '10.2.1.0/24',     vlan: '201',   description: 'Proxmox Hosts'},
-  {cidr: '10.2.8.0/24',     vlan: '202',   description: 'Network Attached Storages'},
-  {cidr: '10.2.32.0/24',    vlan: '232',   description: 'Proxmox Virtual Machines'}
-]
-
 # IP Allocation
 
 ## Network related components
+
+export const network = [
+  {cidr: '10.0.0.0/24',     vlan: '',      gateway: 'UDR',                description: 'Temporary zone for newly added clients'},
+  {cidr: '10.0.1.0/24',     vlan: '1',     gateway: 'Sophos XG',          description: 'Routers'},
+  {cidr: '10.0.2.0/24',     vlan: '2',     gateway: 'UDR',                description: 'Ubiquiti Network Devices'},
+  {cidr: '10.0.32.0/24',    vlan: '32',    gateway: 'VyOS',               description: 'Network Components (ex. DNS)'}
+]
 
 <Callout type="info">
   CIDR: 10.0.0.0/16
@@ -78,6 +66,14 @@ export const mdc = [
 
 ## User area
 
+export const users = [
+  {cidr: '10.1.0.0/24',     vlan: '100',   gateway: 'VyOS',               description: 'In-Home Users'},
+  {cidr: '10.1.1.0/24',     vlan: '101',   gateway: 'VyOS',               description: 'Nya Project Users'},
+  {cidr: '10.1.2.0/24',     vlan: '103',   gateway: 'VyOS',               description: 'Guest Users'},
+  {cidr: '10.1.16.0/24',    vlan: '116',   gateway: 'VyOS',               description: 'Multimedia Devices'},
+  {cidr: '10.1.17.0/24',    vlan: '117',   gateway: 'VyOS',               description: 'IoT Devices'}
+]
+
 <Callout type="info">
   CIDR: 10.1.0.0/16
 </Callout>
@@ -85,9 +81,25 @@ export const mdc = [
 
 ## Mini datacenter (MDC)
 
+export const mdc = [
+  {cidr: '10.2.0.0/24',     vlan: '200',   gateway: 'USW-Enterprise-8',   description: 'MDC Network Devices'},
+  {cidr: '10.2.1.0/24',     vlan: '201',   gateway: 'USW-Enterprise-8',   description: 'Proxmox Hosts'},
+  {cidr: '10.2.8.0/24',     vlan: '202',   gateway: 'USW-Enterprise-8',   description: 'Network Attached Storages'},
+  {cidr: '10.2.32.0/24',    vlan: '232',   gateway: 'USW-Enterprise-8',   description: 'Proxmox Virtual Machines'}
+]
+
 <Callout type="info">
   CIDR: 10.2.0.0/16
 </Callout>
 <CidrTable cidrs={mdc} />
 
+## Persistent Private Networks
 
+export const priv = [
+  {cidr: '172.22.0.0/24',     vlan: '200',   gateway: 'USW-Enterprise-8',   description: 'Proxmox Hosts'}
+]
+
+<Callout type="info">
+  CIDR: 172.22.0.0/16
+</Callout>
+<CidrTable cidrs={priv} />
