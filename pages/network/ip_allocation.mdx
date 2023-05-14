@@ -56,8 +56,11 @@ export const network = [
   {cidr: '10.0.0.0/24',     vlan: '',      gateway: 'UDR',                description: 'Temporary zone for newly added clients'},
   {cidr: '10.0.1.0/24',     vlan: '1',     gateway: 'Sophos XG',          description: 'Routers'},
   {cidr: '10.0.2.0/24',     vlan: '2',     gateway: 'UDR',                description: 'Ubiquiti Network Devices'},
+  {cidr: '10.0.16.0/24',    vlan: '16',    gateway: 'Sophos XG',          description: 'VPN Clients'},
   {cidr: '10.0.32.0/24',    vlan: '32',    gateway: 'VyOS',               description: 'Network Virtual Components (ex. DNS)'},
-  {cidr: '10.0.40.0/24',    vlan: '40',    gateway: 'VyOS',               description: 'Internal Service Proxies'}
+  {cidr: '10.0.33.0/24',    vlan: '33',    gateway: 'VyOS',               description: 'Network Virtual Components (ex. transparent proxy)'},
+  {cidr: '10.0.40.0/24',    vlan: '40',    gateway: 'VyOS',               description: 'Internal Service Proxies'},
+  {cidr: '10.0.96.0/24',    vlan: '96',    gateway: 'VyOS',               description: 'Tailscale Nodes'}
 ]
 
 <Callout type="info">
