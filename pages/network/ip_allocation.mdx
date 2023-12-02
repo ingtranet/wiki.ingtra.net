@@ -50,17 +50,17 @@ export function CidrTable({ cidrs }) {
 
 # IP Allocation
 
-## Network related components
+## Network Management Components
 
 export const network = [
-  {cidr: '10.0.0.0/24',     vlan: '',      gateway: 'UDR',                description: 'Temporary zone for newly added clients'},
-  {cidr: '10.0.1.0/24',     vlan: '1',     gateway: 'Sophos XG',          description: 'Routers'},
-  {cidr: '10.0.2.0/24',     vlan: '2',     gateway: 'UDR',                description: 'Ubiquiti Network Devices'},
-  {cidr: '10.0.16.0/24',    vlan: '16',    gateway: 'Sophos XG',          description: 'VPN Clients'},
-  {cidr: '10.0.32.0/24',    vlan: '32',    gateway: 'VyOS',               description: 'Network Virtual Components (ex. DNS)'},
-  {cidr: '10.0.33.0/24',    vlan: '33',    gateway: 'VyOS',               description: 'Network Virtual Components (ex. transparent proxy)'},
-  {cidr: '10.0.40.0/24',    vlan: '40',    gateway: 'VyOS',               description: 'Internal Service Proxies'},
-  {cidr: '10.0.96.0/24',    vlan: '96',    gateway: 'VyOS',               description: 'Tailscale Nodes'}
+  {cidr: '10.0.0.0/24',     vlan: '',      gateway: 'UDM-SE',             description: 'Default zone for temporal usages'},
+  {cidr: '10.0.4.0/24',     vlan: '4',     gateway: 'UDM-SE',             description: 'Ubiquiti Network Devices'},
+  {cidr: '10.0.8.0/24',     vlan: '8',     gateway: 'UDM-SE',             description: 'Firewalls'},
+  {cidr: '10.0.32.0/24',    vlan: '32',    gateway: 'UDM-SE',             description: 'Tailscale Nodes'},
+  {cidr: '10.0.33.0/24',    vlan: '33',    gateway: 'UDM-SE',             description: 'VPN Servers'},
+  {cidr: '10.0.64.0/24',    vlan: '64',    gateway: 'UDM-SE',             description: 'DNS Servers'},
+  {cidr: '10.0.65.0/24',    vlan: '65',    gateway: 'UDM-SE',             description: 'L4/L7 Reverse Proxies'},
+  {cidr: '10.0.66.0/24',    vlan: '66',    gateway: 'UDM-SE',             description: 'HTTP Forward Proxies'}
 ]
 
 <Callout type="info">
@@ -68,42 +68,53 @@ export const network = [
 </Callout>
 <CidrTable cidrs={network} />
 
-## User area
+## DMZ
 
-export const users = [
-  {cidr: '10.1.0.0/24',     vlan: '100',   gateway: 'VyOS',               description: 'In-Home Users'},
-  {cidr: '10.1.1.0/24',     vlan: '101',   gateway: 'VyOS',               description: 'Nya Project Users'},
-  {cidr: '10.1.2.0/24',     vlan: '103',   gateway: 'VyOS',               description: 'Guest Users'},
-  {cidr: '10.1.16.0/24',    vlan: '116',   gateway: 'VyOS',               description: 'Multimedia Devices'},
-  {cidr: '10.1.17.0/24',    vlan: '117',   gateway: 'VyOS',               description: 'IoT Devices'}
+export const dmz = [
+  {cidr: '10.1.0.0/24',     vlan: '100',   gateway: 'UDM-SE',             description: 'Firewalls'},
+  {cidr: '10.1.16.0/24',    vlan: '116',   gateway: 'UDM-SE',             description: 'L4/L7 Reverse Proxies'},
 ]
 
 <Callout type="info">
   CIDR: 10.1.0.0/16
+</Callout>
+<CidrTable cidrs={dmz} />
+
+## Users
+
+export const users = [
+  {cidr: '10.2.0.0/24',     vlan: '200',   gateway: 'UDM-SE',             description: 'Home Users'},
+  {cidr: '10.2.1.0/24',     vlan: '201',   gateway: 'UDM-SE',             description: 'NYA Project Users'},
+  {cidr: '10.2.2.0/24',     vlan: '202',   gateway: 'UDM-SE',             description: 'Guest Users'},
+  {cidr: '10.2.16.0/24',    vlan: '216',   gateway: 'UDM-SE',             description: 'Multimedia Devices'},
+  {cidr: '10.2.17.0/24',    vlan: '217',   gateway: 'UDM-SE',             description: 'IoT Devices'}
+]
+
+<Callout type="info">
+  CIDR: 10.2.0.0/16
 </Callout>
 <CidrTable cidrs={users} />
 
 ## Mini datacenter (MDC)
 
 export const mdc = [
-  {cidr: '10.2.0.0/24',     vlan: '200',   gateway: 'USW-Enterprise-8',   description: 'MDC Network Devices'},
-  {cidr: '10.2.1.0/24',     vlan: '201',   gateway: 'USW-Enterprise-8',   description: 'Proxmox Hosts'},
-  {cidr: '10.2.2.0/24',     vlan: '202',   gateway: 'USW-Enterprise-8',   description: 'SoCs'},
-  {cidr: '10.2.8.0/24',     vlan: '208',   gateway: 'USW-Enterprise-8',   description: 'Network Attached Storages'},
-  {cidr: '10.2.32.0/24',    vlan: '232',   gateway: 'USW-Enterprise-8',   description: 'Proxmox Virtual Machines'},
-  {cidr: '10.2.33.0/24',    vlan: '233',   gateway: 'USW-Enterprise-8',   description: 'Synology Docker Containers'},
-  {cidr: '10.2.34.0/24',    vlan: '234',   gateway: 'USW-Enterprise-8',   description: 'Kubernetes Nodes'}
+  {cidr: '10.3.0.0/24',     vlan: '300',   gateway: 'USW-Enterprise-8',   description: 'MDC Network Devices'},
+  {cidr: '10.3.1.0/24',     vlan: '301',   gateway: 'USW-Enterprise-8',   description: 'Hypervisors'},
+  {cidr: '10.3.2.0/24',     vlan: '302',   gateway: 'USW-Enterprise-8',   description: 'Small Board Devices'},
+  {cidr: '10.3.3.0/24',     vlan: '303',   gateway: 'USW-Enterprise-8',   description: 'Network Attached Storages'},
+  {cidr: '10.3.32.0/24',    vlan: '332',   gateway: 'USW-Enterprise-8',   description: 'Kubernetes Nodes'}
+  {cidr: '10.3.64.0/24',    vlan: '364',   gateway: 'USW-Enterprise-8',   description: 'Proxmox Virtual Machines'},
+  {cidr: '10.3.65.0/24',    vlan: '365',   gateway: 'USW-Enterprise-8',   description: 'Synology Docker Containers'},
 ]
 
 <Callout type="info">
-  CIDR: 10.2.0.0/16
+  CIDR: 10.3.0.0/16
 </Callout>
 <CidrTable cidrs={mdc} />
 
-## Persistent Private Networks
+## Misc
 
 export const priv = [
-  {cidr: '172.22.0.0/24',     vlan: '4000',   gateway: 'USW-Enterprise-8',   description: 'Proxmox Hosts'},
   {cidr: '172.22.16.0/22',    vlan: '4016',   gateway: 'UDR',                description: 'Spare network for failover'}
 ]
 
